@@ -1,0 +1,14 @@
+{
+    "development": {
+      "username": "anttir",
+      "password": "4nTt112345!",
+      "database": "thefacebook",
+      "host": "mongodb+srv://%1$s:%2$s@cluster0-ywyfx.mongodb.net/%3$s?retryWrites=true&w=majority"
+    },
+    "production": {
+      "username": "root",
+      "password": null,
+      "database": "thefacebook",
+      "host": "127.0.0.1"
+    }
+  }
