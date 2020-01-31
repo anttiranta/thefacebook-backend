@@ -1,9 +1,9 @@
 {
     "development": {
-      "username": "anttir",
-      "password": "4nTt112345!",
+      "username": "root",
+      "password": "null!",
       "database": "thefacebook",
-      "host": "mongodb+srv://%1$s:%2$s@cluster0-ywyfx.mongodb.net/%3$s?retryWrites=true&w=majority"
+      "host": "127.0.0.1"
     },
     "production": {
       "username": "root",
