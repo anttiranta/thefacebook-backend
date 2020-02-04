@@ -26,6 +26,10 @@ const createAccount = {
       name: 'username',
       type: GraphQLString
     },
+    relationship: {
+      name: 'relationship',
+      type: GraphQLString
+    },
   },
   resolve: create
 }

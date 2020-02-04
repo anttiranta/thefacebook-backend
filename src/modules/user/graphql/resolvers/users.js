@@ -9,7 +9,7 @@ const credentialsValidator = require('../../validator/credentialsValidator')
 const authChecker = require('../../../auth/authChecker')
 
 // Create
-const createNew = async function create(parentValue, { name, email, password, username }) {
+const createNew = async function create(parentValue, { name, email, password, username, relationship }) {
     const existingUser = await User.findOne({ email })
     if (existingUser) {
         throw new Error(`The email ${email} is already registered. Please try to login.`)
@@ -29,6 +29,7 @@ const createNew = async function create(parentValue, { name, email, password, us
         email,
         username,
         passwordHash,
+        relationship
     })
 
     return await user.save()

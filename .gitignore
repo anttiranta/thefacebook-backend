@@ -1,0 +1,12 @@
+node_modules
+.env
+src/config/database.json
+
+### NetBeans ###
+/nbproject/
+/nbbuild/
+/dist/
+/nbdist/
+
+### VS Code ###
+.vscode/
