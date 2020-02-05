@@ -20,7 +20,8 @@ module.exports = function (server) {
     context: {
       auth: {
         user: request.user,
-        isAuthenticated: request.user && request.user.id > 0
+        isAuthenticated: request.user && typeof request.user.id === 'string' 
+          && request.user.id.length > 0
       }
     }
   })))

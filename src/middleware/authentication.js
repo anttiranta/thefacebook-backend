@@ -10,7 +10,7 @@ module.exports = function (request, response, next) {
 
     if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
         try {
-            const token = authToken.split(' ')
+            const token = authorization.split(' ')
             request.user = jwt.verify(token[1], serverConfig.secret)
         } catch (e) {
             console.warn('Invalid token detected.')

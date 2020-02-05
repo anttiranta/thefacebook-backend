@@ -6,14 +6,24 @@ const GraphQLString = require('graphql').GraphQLString
 const types = require('../types')
 const resolvers = require('../resolvers/users')
 
-// All
+// List
 const users = {
   type: new GraphQLList(types.UserType),
-  resolve: resolvers.getAll
+  args: {
+    name: { type: GraphQLString },
+    username: { type: GraphQLString },
+    email: { type: GraphQLString },
+    sex: { type: GraphQLString },
+    lookingFor: { type: GraphQLString },
+    interestedIn: { type: GraphQLString },
+    politicalViews: { type: GraphQLString },
+    interests: { type: GraphQLString },
+  },
+  resolve: resolvers.getList
 }
 
 // By ID
-const user = {
+const getUserById = {
   type: types.UserType,
   args: {
     id: { type: GraphQLString }
@@ -21,4 +31,13 @@ const user = {
   resolve: resolvers.getById
 }
 
-module.exports = { users, user }
+// By username
+const getUserByUsername = {
+  type: types.UserType,
+  args: {
+    username: { type: GraphQLString }
+  },
+  resolve: resolvers.getByUsername
+}
+
+module.exports = { users, getUserById, getUserByUsername }
