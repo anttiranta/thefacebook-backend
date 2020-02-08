@@ -26,15 +26,10 @@ const userSchema = mongoose.Schema({
     status: String,
     year: {
         type: Number,
-        validate: function isValidYear(year) {
-            if (!(year.length && /\d/.test(year))) {
-                return false
-            }
-            const currentYear = new Date().getFullYear();
-            return year > (currentYear - 150) && year <= currentYear
-        }
+        min: [new Date().getFullYear() - 150, 'Year is not valid'],
+        max: [new Date().getFullYear(), 'Year is not valid']
     },
-    concentration: String,
+    concentation: String,
     lookingFor: String,
     interestedIn: String,
     relationship: String,
@@ -50,7 +45,9 @@ const userSchema = mongoose.Schema({
         type: String,
         required: false,
     }
-    // TODO: createdAt & updatedAt
+}, 
+{
+    timestamps: true
 })
 
 userSchema.plugin(uniqueValidator)

@@ -20,13 +20,13 @@ const UserType = new GraphQLObjectType({
     memberSince: { type: GraphQLString },
     status: { type: GraphQLString },
     year: { type: GraphQLInt },
-    concentration: { type: GraphQLString },
+    concentation: { type: GraphQLString },
     lookingFor: { type: GraphQLString },
     interestedIn: { type: GraphQLString },
     relationship: { type: GraphQLString },
     politicalView: { type: GraphQLString },
     interests: { type: GraphQLString },
-    //friends: { type: UserType }, // TODO!
+    friends: { type: UserType },
     profilePicture: { type: GraphQLString }
   })
 })

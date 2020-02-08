@@ -1,9 +1,11 @@
 // Imports
 const GraphQLString = require('graphql').GraphQLString
+const GraphQLInt = require('graphql').GraphQLInt
 
 // App Imports
 const UserType = require('./types').UserType
 const create = require('./resolvers/users').createNew
+const update = require('./resolvers/users').update
 const remove = require('./resolvers/users').remove
 
 // Create
@@ -34,8 +36,60 @@ const createAccount = {
   resolve: create
 }
 
+// Update
+const updateAccount = {
+  type: UserType,
+  args: {
+    id: {
+      name: 'id',
+      type: GraphQLString
+    },
+    email: {
+      name: 'email',
+      type: GraphQLString
+    },
+    status: {
+      name: 'status',
+      type: GraphQLString
+    },
+    gender: {
+      name: 'gender',
+      type: GraphQLString
+    },
+    year: {
+      name: 'year',
+      type: GraphQLInt
+    },
+    concentation: {
+      name: 'concentation',
+      type: GraphQLString
+    },
+    lookingFor: {
+      name: 'lookingFor',
+      type: GraphQLString
+    },
+    interestedIn: {
+      name: 'interestedIn',
+      type: GraphQLString
+    },
+    relationship: {
+      name: 'relationship',
+      type: GraphQLString
+    },
+    politicalView: {
+      name: 'politicalView',
+      type: GraphQLString
+    },
+    interests: {
+      name: 'interests',
+      type: GraphQLString
+    }
+  },
+  resolve: update
+}
+
 // Remove
-const userRemove = {
+const removeAccount = {
   type: UserType,
   args: {
     id: {
@@ -46,4 +100,4 @@ const userRemove = {
   resolve: remove
 }
 
-module.exports = { createAccount, userRemove }
+module.exports = { createAccount, updateAccount, removeAccount }

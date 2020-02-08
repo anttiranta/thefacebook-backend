@@ -10,10 +10,11 @@ const resolvers = require('../resolvers/users')
 const users = {
   type: new GraphQLList(types.UserType),
   args: {
+    id: { type: GraphQLString },
     name: { type: GraphQLString },
     username: { type: GraphQLString },
     email: { type: GraphQLString },
-    sex: { type: GraphQLString },
+    gender: { type: GraphQLString },
     lookingFor: { type: GraphQLString },
     interestedIn: { type: GraphQLString },
     politicalViews: { type: GraphQLString },
