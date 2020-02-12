@@ -1,5 +1,5 @@
+// Imports
 const mongoose = require('mongoose')
-
 const uniqueValidator = require('mongoose-unique-validator')
 
 const userSchema = mongoose.Schema({
@@ -41,7 +41,7 @@ const userSchema = mongoose.Schema({
             ref: 'User'
         }
     ],
-    profilePicture: {
+    profilePicture: { // TODO!
         type: String,
         required: false,
     }

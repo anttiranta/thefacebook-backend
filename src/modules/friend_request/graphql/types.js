@@ -7,8 +7,8 @@ const UserType = require('../../user/graphql/types').UserType
 
 // FriendRequest type
 const FriendRequestType = new GraphQLObjectType({
-  name: 'friend_request',
-  description: 'Friend request type',
+  name: 'friendRequest',
+  description: 'Friend Request Type',
 
   fields: () => ({
     id: { type: GraphQLString },
