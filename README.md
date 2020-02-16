@@ -2,7 +2,8 @@
 
 Old school Facebook (friends and photos app). 
 
-- Built with Node, GraphQL, Express and MongoDB (not that it makes sense, but this is my hobby project so...)
+- **Backend** built with Node, GraphQL, Express and MongoDB (not that it makes sense, but this is my hobby project so...)
+- **Frontend** can be found here: https://github.com/anttiranta/thefacebook-frontend
 - Written in ES6
 
 Under construction. 
