@@ -18,12 +18,12 @@ Under construction.
 - User can set one photo as his/her profile image. 
 - Each user as their personal "wall". All users can send messages to the wall.
 - Each message should display the sender's name, message's creation time, and the message itself. 
-- Messages are shown on the wall in an descending order, so 25 newest messages are always shown on the wall. 
-- User can like the photos and messages of other users. There should be like button for this. 
-- Each user can like certain photo or message only once (same user should not be able to like same photo or message multiple times).
+- Messages are shown on the wall in an descending order, so that 25 newest messages are always shown on the wall. 
+- User can like the photos and messages of other users. There should be a like button for this. 
+- Each user can like certain photo or message only once (same user should not be able to like the same photo or message multiple times).
 - Messages and photos should display given likes as well. 
-- Users can comment other users photos and messages. There should a textfield for this. 
-- 10 newest comments are displayed for each photo and message. 
+- Users can comment other user's photos and messages. There should a textfield for this. 
+- 10 newest comments are always displayed for each photo and message. 
 
 ## TODO
 - Photo album and profile image
