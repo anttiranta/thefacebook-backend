@@ -1,18 +1,19 @@
 # thefacebook-backend
 
-Old school Facebook (friends and photos app)
+Old school Facebook (friends and photos app). 
+Under construction. 
 
 ## Requirements
 
 - User should be able to register by giving his/her name, username and password. 
 - It should be possible to locate the user's profile page with the username. Eg. https://app.net/users/profile-username
 - User can search other users with name. 
-- User can send friend requests to other users
+- User can send friend requests to other users.
 - User knows his/her friends.
 - User can view received friend requests. Friend request should display the name of the sender and creation time.
 - If friend request is accepted, user is added to friends. It should be also possible to deny the friend request.
 - Each user has a photo gallery. User can add photos to gallery and also remove them. 
-- Photo album can contain max. 10 photos
+- Photo album can contain max. 10 photos.
 - Each photo also contains textual description, which is displayed with the image.
 - User can set one photo as his/her profile image. 
 - Each user as their personal "wall". All users can send messages to the wall.
@@ -23,3 +24,9 @@ Old school Facebook (friends and photos app)
 - Messages and photos should display given likes as well. 
 - Users can comment other users photos and messages. There should a textfield for this. 
 - 10 newest comments are displayed for each photo and message. 
+
+## TODO
+- Photo album and profile image
+- Wall and messages
+- Likes
+- Comments
