@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
 const imageContentSchema = {
-    base64encodedData: {
+    base64EncodedData: {
         type: String
     },
     mimeType: {
@@ -32,16 +32,11 @@ const userMediaGalleryEntrySchema = mongoose.Schema({
         type: String,
         required: true
     },
-    types: {
-        type: [String],
-        enum: ['image', 'thumbnail'],
-        required: true
-    },
     file: {
         type: String,
         required: true
     },
-    content: imageContentSchema, // TODO: ok?
+    content: imageContentSchema,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

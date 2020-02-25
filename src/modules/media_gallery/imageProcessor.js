@@ -6,7 +6,7 @@ const path = require('path');
 const contentValidator = require('./imageContentValidator')
 const mimeTypeExtensionMap = require('./mimeTypeExtensionMap')
 
-const processImageContent = async (userId, imageContent) => {
+const addImage = async (userId, imageContent) => {
     if (!contentValidator.isValid(imageContent)) {
         throw new Error('The image content is not valid.')
     }
@@ -14,7 +14,7 @@ const processImageContent = async (userId, imageContent) => {
     const fileContent = Buffer.from(imageContent.base64EncodedData, 'base64')
     const destinationFolder = path.join(__dirname, '..', '..', '..', 'public', 'images', 'uploads', 'user', 'photos')
     const fileName = getFileName(imageContent)
-    const destFileName = userId + '-' + Date.now() + '-' + fileName 
+    const destFileName = userId + '-' + Date.now() + '-' + fileName // get not duplicated filename
     const absolutePath = getAbsolutePath(destinationFolder, destFileName)
 
     try {
@@ -24,9 +24,19 @@ const processImageContent = async (userId, imageContent) => {
     }
     
     return getAbsolutePath(
-        path.join('images', 'uploads', 'user', 'photos'), 
+        path.join('images', 'uploads', 'user', 'photos'),
         destFileName
-    )
+    ).replace(/\\/g, '/');
+}
+
+const removeImage = async (file) => {
+    const absolutePath = getAbsolutePath(path.join(__dirname, '..', '..', '..', 'public'), file)
+
+    try {
+        await fs.unlink(absolutePath)
+    } catch (exception) {
+        throw new Error('The file couldn\'t be removed.')
+    }
 }
 
 const getAbsolutePath = (basePath, fileName) => {
@@ -46,4 +56,7 @@ const getFileName = function (imageContent) {
     return fileName
 }
 
-module.exports = { processImageContent }
+module.exports = { 
+    addImage,
+    removeImage
+}

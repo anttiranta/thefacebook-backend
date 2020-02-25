@@ -1,6 +1,7 @@
 // Imports
 const GraphQLList = require('graphql').GraphQLList
 const GraphQLString = require('graphql').GraphQLString
+const GraphQLBoolean = require('graphql').GraphQLBoolean
 
 // App Imports
 const types = require('./types')
@@ -11,6 +12,7 @@ const userGalleryEntries = {
   type: new GraphQLList(types.UserMediaGalleryEntryType),
   args: {
     userId: { type: GraphQLString },
+    disabled: { type: GraphQLBoolean },
   },
   resolve: resolvers.getList
 }

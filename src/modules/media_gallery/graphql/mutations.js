@@ -1,5 +1,7 @@
 // Imports
 const GraphQLString = require('graphql').GraphQLString
+const GraphQLBoolean = require('graphql').GraphQLBoolean
+const GraphQLInt = require('graphql').GraphQLInt
 
 // App Imports
 const UserMediaGalleryEntryType = require('./types').UserMediaGalleryEntryType
@@ -23,8 +25,11 @@ const createUserGalleryEntry = {
         content: {
             name: 'content',
             type: ImageContentInputType
+        },
+        disabled: {
+            name: 'disabled',
+            type: GraphQLBoolean
         }
-        // TODO: add types!
     },
     resolve: create
 }
@@ -45,9 +50,13 @@ const updateUserGalleryEntry = {
             name: 'label',
             type: GraphQLString
         },
-        content: {
-            name: 'content',
-            type: ImageContentInputType
+        position: {
+            name: 'position',
+            type: GraphQLInt
+        },
+        disabled: {
+            name: 'disabled',
+            type: GraphQLBoolean
         }
     },
     resolve: update
