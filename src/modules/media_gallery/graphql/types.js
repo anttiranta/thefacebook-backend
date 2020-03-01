@@ -42,7 +42,9 @@ const UserMediaGalleryEntryType = new GraphQLObjectType({
         disabled: { type: GraphQLBoolean },
         mediaType: { type: GraphQLString },
         file: { type: GraphQLString },
-        content: { type: ImageContentType }
+        content: { type: ImageContentType },
+        createdAt: { type: GraphQLString }, 
+        updatedAt: { type: GraphQLString }
     })
 })
 

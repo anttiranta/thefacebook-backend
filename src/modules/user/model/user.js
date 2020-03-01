@@ -41,8 +41,9 @@ const userSchema = mongoose.Schema({
             ref: 'User'
         }
     ],
-    profilePicture: { // TODO!
-        type: String,
+    profilePicture: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UserMediaGalleryEntry',
         required: false,
     }
 }, 

@@ -2,6 +2,10 @@ node_modules
 .env
 src/config/database.json
 
+### Images ###
+public/images/uploads/user/photos/*
+!public/images/uploads/user/photos/.gitkeep
+
 ### NetBeans ###
 /nbproject/
 /nbbuild/

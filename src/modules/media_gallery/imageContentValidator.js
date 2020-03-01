@@ -14,7 +14,7 @@ const isValid = (imageContent) => {
         throw new Error('The image content must be valid base64 encoded data.')
     }
 
-    const sourceMimeType = imageType(fileContent).mime
+    sourceMimeType = getImageMimeType(fileContent)
     if (sourceMimeType != imageContent.mimeType || !isMimeTypeValid(sourceMimeType)) {
         throw new Error('The image MIME type is not valid or not supported.');
     }
@@ -22,6 +22,14 @@ const isValid = (imageContent) => {
         throw new Error('Provided image name contains forbidden characters.')
     }
     return true
+}
+
+const getImageMimeType = (fileContent) => {
+    try {
+        return imageType(fileContent).mime
+    } catch (exception) {
+        return ''
+    }
 }
 
 const isMimeTypeValid = (mimeType) => {

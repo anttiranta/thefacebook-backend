@@ -50,7 +50,17 @@ const update = async function (parentValue, { id, userId, label, position, disab
 
     verifyUserExists(userId)
 
-    return await UserMediaGalleryEntry.findByIdAndUpdate(id, { label, position, disabled }, { new: true })
+    let mediaGalleryData = {label}
+    if (position !== undefined) 
+        mediaGalleryData.position = position
+    if (disabled !== undefined)
+        mediaGalleryData.disabled = disabled
+
+    return await UserMediaGalleryEntry.findByIdAndUpdate(
+        id, 
+        mediaGalleryData, 
+        { new: true }
+    )
 }
 
 // Remove
@@ -76,7 +86,7 @@ const remove = async function (parentValue, { id, userId }, context) {
 const getById = async function (parentValue, { id }, context) {
     authChecker.checkIsAllowed(context)
 
-    const mediaEntry = await UserMediaGalleryEntry.findById(id)
+    const mediaEntry = await UserMediaGalleryEntry.findById(id).populate("user")
     if (mediaEntry) {
         return mediaEntry
     } else {
