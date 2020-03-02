@@ -2,6 +2,8 @@
 const GraphQLObjectType = require('graphql').GraphQLObjectType
 const GraphQLString = require('graphql').GraphQLString
 const GraphQLInt = require('graphql').GraphQLInt
+const GraphQLList = require('graphql').GraphQLList
+const UserMediaGalleryEntryType = require('../../media_gallery/graphql/types').UserMediaGalleryEntryType
 
 // User type
 const UserType = new GraphQLObjectType({
@@ -26,8 +28,8 @@ const UserType = new GraphQLObjectType({
     relationship: { type: GraphQLString },
     politicalView: { type: GraphQLString },
     interests: { type: GraphQLString },
-    friends: { type: UserType },
-    profilePicture: { type: GraphQLString }
+    friends: { type: new GraphQLList(UserType) },
+    profilePicture: { type: UserMediaGalleryEntryType }
   })
 })
 

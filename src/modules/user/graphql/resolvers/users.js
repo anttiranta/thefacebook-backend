@@ -9,41 +9,55 @@ const authChecker = require('../../../auth/authChecker')
 const objectUtils = require('../../../../util/objectUtils')
 
 // Get by ID
-const getById = async function getById(parentValue, { id }, context) {
+const getById = async function(parentValue, {id}, context, {fieldNodes}) {
     authChecker.checkIsAllowed(context)
 
-    const user = await User.findById(id)
+    const fieldsToPopulate = getFieldsToPopulate(fieldNodes)
+
+    let user = null
+    if (fieldsToPopulate.length > 0) {
+        user = await User.findById(id).populate(fieldsToPopulate.join(' '))
+    } else {
+        user = await User.findById(id)
+    }
+    
     if (user) {
         return user
-    } else {
-        throw Error('User does not exist.')
     }
+    throw Error('User does not exist.')
 }
 
 // Get by Username
-const getByUsername = async function getByUsername(parentValue, { username }, context) {
+const getByUsername = async function(parentValue, {username}, context, {fieldNodes}) {
     authChecker.checkIsAllowed(context)
 
-    const user = await User.findOne({username})
+    const fieldsToPopulate = getFieldsToPopulate(fieldNodes)
+
+    let user = null
+    if (fieldsToPopulate.length > 0) {
+        user = await User.findOne({username}).populate(fieldsToPopulate.join(' '))
+    } else {
+        user = await User.findOne({username})
+    }
+    
     if (user) {
         return user
-    } else {
-        throw Error('User does not exist.')
     }
+    throw Error('User does not exist.')
 }
 
 // Get list
-const getList = async function getList(parentValue, params, context) {
+const getList = async function(parentValue, params, context) {
     authChecker.checkIsAllowed(context)
 
     if (objectUtils.isEmpty(params)) {
-        return await User.find({});
+        return await User.find({}).populate('profilePicture')
     }
-    return await User.find(params);
+    return await User.find(params).populate('profilePicture')
 }
 
 // Create
-const createNew = async function create(parentValue, { name, email, password, username, relationship }) {
+const createNew = async function(parentValue, { name, email, password, username, relationship }) {
     const existingUser = await User.findOne({ email })
     if (existingUser) {
         throw new Error(`The email ${email} is already registered. Please try to login.`)
@@ -70,7 +84,8 @@ const createNew = async function create(parentValue, { name, email, password, us
     return await user.save()
 }
 
-const update = async function update(parentValue, params, context) {
+// Update
+const update = async function(parentValue, params, context) {
     authChecker.checkIsAllowed(context)
 
     if (!params.id || params.id <= 0) {
@@ -85,9 +100,8 @@ const update = async function update(parentValue, params, context) {
         interests } = params, { new: true })
 }
 
-
 // Delete
-const remove = async function remove(parentValue, { id }, context) {
+const remove = async function(parentValue, { id }, context) {
     authChecker.checkIsAllowed(context)
 
     if (context.auth.user.id !== id) {
@@ -96,8 +110,23 @@ const remove = async function remove(parentValue, { id }, context) {
     return await User.findByIdAndDelete(id)
 }
 
+// Create hash of password
 const createPasswordHash = async (password) => {
     return await bcrypt.hash(password, serverConfig.saltRounds)
+}
+
+// Resolve fields in need of population
+const getFieldsToPopulate = (fieldNodes) => {
+    let fields = []
+
+    if (fieldNodes[0].selectionSet.selections) {
+        fieldNodes[0].selectionSet.selections.forEach(selection => {
+            if(['friends', 'profilePicture'].includes(selection.name.value)) {
+                fields.push(selection.name.value)
+            }
+        });
+    }
+    return fields
 }
 
 module.exports = {

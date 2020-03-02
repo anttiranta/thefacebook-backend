@@ -7,6 +7,7 @@ const UserType = require('./types').UserType
 const create = require('./resolvers/users').createNew
 const update = require('./resolvers/users').update
 const remove = require('./resolvers/users').remove
+const setProfilePicture = require('./resolvers/userManagement').setProfilePicture
 
 // Create
 const createAccount = {
@@ -83,7 +84,7 @@ const updateAccount = {
     interests: {
       name: 'interests',
       type: GraphQLString
-    }
+    },
   },
   resolve: update
 }
@@ -100,4 +101,25 @@ const removeAccount = {
   resolve: remove
 }
 
-module.exports = { createAccount, updateAccount, removeAccount }
+// Set profile picture
+const setAccountProfilePicture = {
+  type: UserType,
+  args: {
+    userId: {
+      name: 'userId',
+      type: GraphQLString
+    },
+    userMediaGalleryEntryId: {
+      name: 'userMediaGalleryEntryId',
+      type: GraphQLString
+    },
+  },
+  resolve: setProfilePicture
+}
+
+module.exports = {
+  createAccount,
+  updateAccount,
+  removeAccount,
+  setAccountProfilePicture
+}

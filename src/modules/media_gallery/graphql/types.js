@@ -5,9 +5,6 @@ const GraphQLString = require('graphql').GraphQLString
 const GraphQLInt = require('graphql').GraphQLInt
 const GraphQLBoolean = require('graphql').GraphQLBoolean
 
-// App Imports
-const UserType = require('../../user/graphql/types').UserType
-
 const ImageContentType = new GraphQLObjectType({
     name: 'imageContentType',
     description: 'Image Content Data Type',
@@ -30,13 +27,18 @@ const ImageContentInputType = new GraphQLInputObjectType({
     })
 })
 
+// Solves circular dependency issue
+const getUserField = () => (
+    { type: require('../../user/graphql/types').UserType }
+)
+
 const UserMediaGalleryEntryType = new GraphQLObjectType({
     name: 'userMediaGalleryEntry',
     description: 'User Media Gallery Entry Type',
 
     fields: () => ({
         id: { type: GraphQLString },
-        user: { type: UserType },
+        user: getUserField(),
         label: { type: GraphQLString },
         position: { type: GraphQLInt },
         disabled: { type: GraphQLBoolean },

@@ -31,7 +31,6 @@ Under construction.
 - 10 newest comments are always displayed for each photo and message. 
 
 ## TODO
-- Photo album and profile image
 - Wall and messages
 - Likes
 - Comments

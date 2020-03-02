@@ -39,7 +39,8 @@ const userMediaGalleryEntrySchema = mongoose.Schema({
     content: imageContentSchema,
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        index: true
     }
 }, 
 {

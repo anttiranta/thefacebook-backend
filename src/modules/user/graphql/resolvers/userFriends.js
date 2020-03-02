@@ -3,7 +3,7 @@ const User = require('../../model/user')
 const authChecker = require('../../../auth/authChecker')
 
 // Get list
-const getList = async function getList(parentValue, { id }, context) {
+const getList = async function(parentValue, { id }, context) {
     authChecker.checkIsAllowed(context)
 
     const user = await User.findById(id).populate('friends');
