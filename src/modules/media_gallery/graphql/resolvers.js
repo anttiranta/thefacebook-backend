@@ -70,12 +70,18 @@ const remove = async function (parentValue, { id, userId }, context) {
         throw new Error('Operation denied.')
     }
 
-    verifyUserExists(userId)
+    const user = await User.findById(userId)
+    if (!user) {
+        throw Error('User does not exist.')
+    }
 
     const mediaGalleryEntry = await UserMediaGalleryEntry.findByIdAndDelete(id)
     if (!mediaGalleryEntry) {
         throw Error('No media with the provided ID was found. Verify the ID and try again.')
     }
+
+    user.profilePicture = undefined
+    await user.save()
 
     await imageProcessor.removeImage(mediaGalleryEntry.file)
 
@@ -100,7 +106,7 @@ const getList = async function (parentValue, { userId, disabled = false }, conte
 
     verifyUserExists(userId)
 
-    return await UserMediaGalleryEntry.find({user: userId, disabled})
+    return await UserMediaGalleryEntry.find({user: userId, disabled}).sort('position')
 }
 
 const verifyUserExists = async function(userId) {

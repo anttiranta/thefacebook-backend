@@ -57,7 +57,7 @@ const getList = async function(parentValue, params, context) {
 }
 
 // Create
-const createNew = async function(parentValue, { name, email, password, username, relationship }) {
+const createNew = async function(parentValue, { name, email, password, username, status }) {
     const existingUser = await User.findOne({ email })
     if (existingUser) {
         throw new Error(`The email ${email} is already registered. Please try to login.`)
@@ -77,7 +77,7 @@ const createNew = async function(parentValue, { name, email, password, username,
         email,
         username,
         passwordHash,
-        relationship,
+        status,
         memberSince: Date.now()
     })
 

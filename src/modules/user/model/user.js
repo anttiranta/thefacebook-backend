@@ -35,6 +35,8 @@ const userSchema = mongoose.Schema({
     relationship: String,
     politicalView: String,
     interests: String,
+    phone: String,
+    school: String,
     friends: [
         {
             type: mongoose.Schema.Types.ObjectId,

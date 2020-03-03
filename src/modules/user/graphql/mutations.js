@@ -29,8 +29,8 @@ const createAccount = {
       name: 'username',
       type: GraphQLString
     },
-    relationship: {
-      name: 'relationship',
+    status: {
+      name: 'status',
       type: GraphQLString
     },
   },
@@ -83,6 +83,14 @@ const updateAccount = {
     },
     interests: {
       name: 'interests',
+      type: GraphQLString
+    },
+    phone: {
+      name: 'phone',
+      type: GraphQLString
+    },
+    school: {
+      name: 'school',
       type: GraphQLString
     },
   },

@@ -18,8 +18,8 @@ module.exports = function (server) {
     server.use(cors())
 
     // Request body parser
-    server.use(bodyParser.json())
-    server.use(bodyParser.urlencoded({ extended: false }))
+    server.use(bodyParser.json({limit: '3mb'}))
+    server.use(bodyParser.urlencoded({limit: '3mb', extended: false}))
 
     // Request body cookie parser
     server.use(cookieParser())

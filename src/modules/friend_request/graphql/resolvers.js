@@ -16,7 +16,11 @@ const getPendingFriendRequests = async function getList(parentValue, { creator, 
     } else if (context.auth.user.id === receiver) {
         return await FriendRequest.find({
             receiver, status: STATUS_PENDING
-        }).populate('creator').populate('receiver', 'id')
+        }).populate({
+            path: 'creator',
+            populate: { path: 'profilePicture' }
+        })
+        .populate('receiver', 'id')
     } else {
         throw new Error('Operation denied.')
     }
@@ -52,7 +56,7 @@ const createNew = async function (parentValue, { creator, receiver }, context) {
         status: STATUS_PENDING
     })
 
-    return await friendRequest.save() // TODO: ok?
+    return await friendRequest.save() 
 }
 
 const acceptFriendRequest = async function (parentValue, { creator, receiver }, context) {

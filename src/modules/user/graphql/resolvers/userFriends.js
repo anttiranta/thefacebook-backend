@@ -6,7 +6,10 @@ const authChecker = require('../../../auth/authChecker')
 const getList = async function(parentValue, { id }, context) {
     authChecker.checkIsAllowed(context)
 
-    const user = await User.findById(id).populate('friends');
+    const user = await User.findById(id).populate({
+        path: 'friends',
+        populate: { path: 'profilePicture' }
+      });
 
     if (user) {
         if (user.friends && user.friends.length > 0) {

@@ -28,6 +28,8 @@ const UserType = new GraphQLObjectType({
     relationship: { type: GraphQLString },
     politicalView: { type: GraphQLString },
     interests: { type: GraphQLString },
+    phone: { type: GraphQLString },
+    school: { type: GraphQLString },
     friends: { type: new GraphQLList(UserType) },
     profilePicture: { type: UserMediaGalleryEntryType }
   })
